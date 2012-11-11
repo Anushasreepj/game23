@@ -30,7 +30,7 @@ public class Grid {
                 addAll(neighbours);
                 retainAll(activeCells);
             }};
-            if (2 == activeNeighbours.size()) {
+            if (2 == activeNeighbours.size() || 3 == activeNeighbours.size()) {
                 newActiveCells.add(activeCell);
             }
         }
