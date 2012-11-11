@@ -23,6 +23,13 @@ public class Grid {
         this.allCells = createCells(width, height);
     }
 
+    private Grid(int width, int height, Set<Cell> activeCells, Set<Cell> allCells) {
+        this.width = width;
+        this.height = height;
+        this.activeCells = activeCells;
+        this.allCells = createCells(width, height);
+    }
+
     private Set<Cell> createCells(int width, int height) {
         Set<Cell> cells = new HashSet<Cell>();
         for (int x = 0; x < width; x++) {
@@ -42,7 +49,7 @@ public class Grid {
                 }
             }
         }};
-        return new Grid(width, height, newActiveCells);
+        return new Grid(width, height, newActiveCells, allCells);
     }
 
     private boolean shouldBeActive(Cell cell) {
