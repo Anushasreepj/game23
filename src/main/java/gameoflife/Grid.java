@@ -2,6 +2,7 @@ package gameoflife;
 
 import java.awt.*;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 public class Grid {
@@ -21,7 +22,19 @@ public class Grid {
     }
 
     public Grid nextIteration() {
-        return new Grid(width, height);
+
+        Set<Cell> newActiveCells = new HashSet<Cell>();
+        for (Cell activeCell : activeCells) {
+            final Set<Cell> neighbours = activeCell.getNeighbours();
+            Set<Cell> activeNeighbours = new HashSet<Cell>() {{
+                addAll(neighbours);
+                retainAll(activeCells);
+            }};
+            if (2 == activeNeighbours.size()) {
+                newActiveCells.add(activeCell);
+            }
+        }
+        return new Grid(width, height, newActiveCells);
     }
 
     @Override

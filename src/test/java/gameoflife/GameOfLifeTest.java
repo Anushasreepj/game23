@@ -92,7 +92,26 @@ public class GameOfLifeTest {
         Set<Cell> neighbours = cell.getNeighbours();
 
         Assert.assertThat(neighbours, equalTo(expectedNeighbours));
+    }
 
+    @Test
+    public void Cells_with_two_active_neighbours_stay_alive() {
 
+        Grid initial = new Grid(3, 3, new HashSet<Cell>() {{
+            add(new Cell(0, 1));
+            add(new Cell(1, 0));
+            add(new Cell(2, 1));
+            add(new Cell(1, 2));
+        }});
+        Grid expected = new Grid(3, 3, new HashSet<Cell>() {{
+            add(new Cell(0, 1));
+            add(new Cell(1, 0));
+            add(new Cell(2, 1));
+            add(new Cell(1, 2));
+        }});
+
+        Grid iteration1 = initial.nextIteration();
+
+        Assert.assertThat(iteration1, equalTo(expected));
     }
 }
