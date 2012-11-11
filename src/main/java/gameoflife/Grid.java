@@ -35,18 +35,28 @@ public class Grid {
 
     public Grid nextIteration() {
 
-        Set<Cell> newActiveCells = new HashSet<Cell>();
-        for (Cell cell : allCells) {
-            final Set<Cell> neighbours = cell.getNeighbours();
-            Set<Cell> activeNeighbours = new HashSet<Cell>() {{
-                addAll(neighbours);
-                retainAll(activeCells);
-            }};
-            if ((2 == activeNeighbours.size() && activeCells.contains(cell)) || 3 == activeNeighbours.size()) {
-                newActiveCells.add(cell);
+        Set<Cell> newActiveCells = new HashSet<Cell>() {{
+            for (Cell cell : allCells) {
+                if (shouldBeActive(cell)) {
+                    add(cell);
+                }
             }
-        }
+        }};
         return new Grid(width, height, newActiveCells);
+    }
+
+    private boolean shouldBeActive(Cell cell) {
+        int activeNeighbourCount = getActiveNeighbourCount(cell);
+        return 3 == activeNeighbourCount || (2 == activeNeighbourCount && activeCells.contains(cell));
+    }
+
+    private int getActiveNeighbourCount(Cell cell) {
+        final Set<Cell> neighbours = cell.getNeighbours();
+        Set<Cell> activeNeighbours = new HashSet<Cell>() {{
+            addAll(neighbours);
+            retainAll(activeCells);
+        }};
+        return activeNeighbours.size();
     }
 
     @Override
