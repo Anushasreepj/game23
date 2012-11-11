@@ -177,4 +177,33 @@ public class GameOfLifeTest {
 
         Assert.assertThat(iteration1, equalTo(expected));
     }
+
+    /**
+     * See http://en.wikipedia.org/wiki/Conway's_Game_of_Life for detail of Toad oscillator
+     */
+    @Test
+    public void Correctly_calculates_toad() {
+
+        Grid toad1 = new Grid(6, 6, new HashSet<Cell>() {{
+            add(new Cell(2, 2));
+            add(new Cell(3, 2));
+            add(new Cell(4, 2));
+            add(new Cell(1, 3));
+            add(new Cell(2, 3));
+            add(new Cell(3, 3));
+        }});
+
+        Grid toad2 = new Grid(6, 6, new HashSet<Cell>() {{
+            add(new Cell(3, 1));
+            add(new Cell(1, 2));
+            add(new Cell(4, 2));
+            add(new Cell(1, 3));
+            add(new Cell(4, 3));
+            add(new Cell(2, 4));
+        }});
+
+        Assert.assertThat(toad1.nextIteration(), equalTo(toad2));
+        Assert.assertThat(toad2.nextIteration(), equalTo(toad1));
+
+    }
 }
