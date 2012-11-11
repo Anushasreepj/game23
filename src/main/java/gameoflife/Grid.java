@@ -10,6 +10,7 @@ public class Grid {
     private final int width;
     private final int height;
     private final Set<Cell> activeCells;
+    private Set<Cell> allCells;
 
     public Grid(int width, int height) {
         this(width, height, Collections.<Cell>emptySet());
@@ -19,19 +20,30 @@ public class Grid {
         this.width = width;
         this.height = height;
         this.activeCells = activeCells;
+        this.allCells = createCells(width, height);
+    }
+
+    private Set<Cell> createCells(int width, int height) {
+        Set<Cell> cells = new HashSet<Cell>();
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                cells.add(new Cell(x, y));
+            }
+        }
+        return cells;
     }
 
     public Grid nextIteration() {
 
         Set<Cell> newActiveCells = new HashSet<Cell>();
-        for (Cell activeCell : activeCells) {
-            final Set<Cell> neighbours = activeCell.getNeighbours();
+        for (Cell cell : allCells) {
+            final Set<Cell> neighbours = cell.getNeighbours();
             Set<Cell> activeNeighbours = new HashSet<Cell>() {{
                 addAll(neighbours);
                 retainAll(activeCells);
             }};
-            if (2 == activeNeighbours.size() || 3 == activeNeighbours.size()) {
-                newActiveCells.add(activeCell);
+            if ((2 == activeNeighbours.size() && activeCells.contains(cell)) || 3 == activeNeighbours.size()) {
+                newActiveCells.add(cell);
             }
         }
         return new Grid(width, height, newActiveCells);

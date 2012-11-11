@@ -158,4 +158,23 @@ public class GameOfLifeTest {
 
         Assert.assertThat(iteration1, equalTo(expected));
     }
+
+
+    @Test
+    public void Dead_cells_with_three_active_neighbours_are_born() {
+
+        Grid initial = new Grid(3, 2, new HashSet<Cell>() {{
+            add(new Cell(0, 0));
+            add(new Cell(2, 0));
+            add(new Cell(1, 1));
+        }});
+        Grid expected = new Grid(3, 2, new HashSet<Cell>() {{
+            add(new Cell(1, 0));
+            add(new Cell(1, 1));
+        }});
+
+        Grid iteration1 = initial.nextIteration();
+
+        Assert.assertThat(iteration1, equalTo(expected));
+    }
 }
