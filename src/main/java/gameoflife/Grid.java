@@ -8,13 +8,13 @@ public class Grid {
 
     private final int width;
     private final int height;
-    private final Set<Point> activeCells;
+    private final Set<Cell> activeCells;
 
     public Grid(int width, int height) {
-        this(width, height, Collections.<Point>emptySet());
+        this(width, height, Collections.<Cell>emptySet());
     }
 
-    public Grid(int width, int height, Set<Point> activeCells) {
+    public Grid(int width, int height, Set<Cell> activeCells) {
         this.width = width;
         this.height = height;
         this.activeCells = activeCells;

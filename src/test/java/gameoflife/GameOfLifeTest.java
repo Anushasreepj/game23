@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.awt.*;
 import java.util.HashSet;
+import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.*;
 
@@ -16,15 +17,15 @@ public class GameOfLifeTest {
         Grid grid1 = new Grid(4, 3);
         Grid grid2 = new Grid(4, 3);
         Grid grid3 = new Grid(5, 2);
-        Grid grid4 = new Grid(4, 3, new HashSet<Point>() {{
-            add(new Point(1,2));
+        Grid grid4 = new Grid(4, 3, new HashSet<Cell>() {{
+            add(new Cell(1,2));
         }});
-        Grid grid5 = new Grid(4, 3, new HashSet<Point>() {{
-            add(new Point(1,2));
+        Grid grid5 = new Grid(4, 3, new HashSet<Cell>() {{
+            add(new Cell(1,2));
         }});
-        Grid grid6 = new Grid(4, 3, new HashSet<Point>() {{
-            add(new Point(2,3));
-            add(new Point(3,4));
+        Grid grid6 = new Grid(4, 3, new HashSet<Cell>() {{
+            add(new Cell(2,3));
+            add(new Cell(3,4));
         }});
 
         Assert.assertThat(grid1, equalTo(grid2));
@@ -49,8 +50,8 @@ public class GameOfLifeTest {
     @Test
     public void Single_cell_dies() {
 
-        Grid initial = new Grid(2, 2, new HashSet<Point>() {{
-            add(new Point(0, 0));
+        Grid initial = new Grid(2, 2, new HashSet<Cell>() {{
+            add(new Cell(0, 0));
         }});
         Grid expected = new Grid(2, 2);
 
@@ -62,9 +63,9 @@ public class GameOfLifeTest {
     @Test
     public void Two_cells_both_die() {
 
-        Grid initial = new Grid(2, 2, new HashSet<Point>() {{
-            add(new Point(0, 0));
-            add(new Point(1, 0));
+        Grid initial = new Grid(2, 2, new HashSet<Cell>() {{
+            add(new Cell(0, 0));
+            add(new Cell(1, 0));
         }});
         Grid expected = new Grid(2, 2);
 
@@ -72,4 +73,6 @@ public class GameOfLifeTest {
 
         Assert.assertThat(iteration1, equalTo(expected));
     }
+
+
 }
