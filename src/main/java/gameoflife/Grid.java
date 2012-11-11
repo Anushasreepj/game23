@@ -21,7 +21,7 @@ public class Grid {
     }
 
     public Grid nextIteration() {
-        return this;
+        return new Grid(width, height);
     }
 
     @Override
