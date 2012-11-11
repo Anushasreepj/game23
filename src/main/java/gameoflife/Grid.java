@@ -58,4 +58,16 @@ public class Grid {
         result = 31 * result + (activeCells != null ? activeCells.hashCode() : 0);
         return result;
     }
+
+    public String toString() {
+        StringBuilder builder = new StringBuilder("\n");
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                builder.append(activeCells.contains(new Cell(x, y)) ? "* " : ". ");
+            }
+            builder.append("\n");
+        }
+        return builder.toString();
+
+    }
 }
