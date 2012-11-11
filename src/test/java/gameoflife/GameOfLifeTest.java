@@ -74,5 +74,25 @@ public class GameOfLifeTest {
         Assert.assertThat(iteration1, equalTo(expected));
     }
 
+    @Test
+    public void Cell_knows_its_neighbours() {
 
+        Cell cell = new Cell(2, 3);
+        Set<Cell> expectedNeighbours = new HashSet<Cell>() {{
+            add(new Cell(1, 2));
+            add(new Cell(2, 2));
+            add(new Cell(3, 2));
+            add(new Cell(1, 3));
+            add(new Cell(3, 3));
+            add(new Cell(1, 4));
+            add(new Cell(2, 4));
+            add(new Cell(3, 4));
+        }};
+
+        Set<Cell> neighbours = cell.getNeighbours();
+
+        Assert.assertThat(neighbours, equalTo(expectedNeighbours));
+
+
+    }
 }
