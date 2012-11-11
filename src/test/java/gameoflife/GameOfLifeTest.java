@@ -34,4 +34,15 @@ public class GameOfLifeTest {
         Assert.assertThat(grid1, not(equalTo(grid4)));
 
     }
+
+    @Test
+    public void All_dead_becomes_all_dead() {
+
+        Grid initial = new Grid(2, 2);
+        Grid expected = new Grid(2, 2);
+
+        Grid iteration1 = initial.nextIteration();
+
+        Assert.assertThat(iteration1, equalTo(expected));
+    }
 }

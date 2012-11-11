@@ -20,6 +20,10 @@ public class Grid {
         this.activeCells = activeCells;
     }
 
+    public Grid nextIteration() {
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
