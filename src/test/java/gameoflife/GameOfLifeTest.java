@@ -58,4 +58,18 @@ public class GameOfLifeTest {
 
         Assert.assertThat(iteration1, equalTo(expected));
     }
+
+    @Test
+    public void Two_cells_both_die() {
+
+        Grid initial = new Grid(2, 2, new HashSet<Point>() {{
+            add(new Point(0, 0));
+            add(new Point(1, 0));
+        }});
+        Grid expected = new Grid(2, 2);
+
+        Grid iteration1 = initial.nextIteration();
+
+        Assert.assertThat(iteration1, equalTo(expected));
+    }
 }
