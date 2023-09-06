@@ -6,7 +6,7 @@
 
     <groupId>com.dansmithy.gameoflife</groupId>
     <artifactId>java-version</artifactId>
-    <version>1.0</version>
+    <version>11</version>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
